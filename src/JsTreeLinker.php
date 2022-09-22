@@ -114,16 +114,15 @@ class JsTreeLinker
                 continue;
             }
             $sourceFile = $sourceDir . '/' . $sourceItem;
+            if (is_dir($sourceFile)) {
+                continue;
+            }
+            var_dump($sourceFile);
             $targetFile = $targetDir . '/' . $sourceItem;
             if ($this->mode === 'symlink') {
                 $this->filesystem->relativeSymlink($sourceFile, $targetFile);
             } else {
-                if (is_file($sourceFile)) {
-                    copy($sourceFile, $targetFile);
-                }
-                if (is_dir($sourceFile)) {
-                    $this->linkDir($sourceFile, $targetFile);
-                }
+                copy($sourceFile, $targetFile);
             }
         }
         closedir($sourceDirHandle);
