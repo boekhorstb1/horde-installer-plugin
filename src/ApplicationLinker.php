@@ -78,7 +78,8 @@ class ApplicationLinker
                         if (in_array(
                             $name,
                             [
-                                'doc', 'test','script',
+                                'doc', 'test',
+                                'bin', 'script',
                                 'scripts', 'static', // static should be ensured to exist in webdir.
                                 '.git', '.github',
                             ]
