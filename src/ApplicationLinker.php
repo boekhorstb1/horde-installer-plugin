@@ -77,7 +77,7 @@ class ApplicationLinker
                 'dirs' => [
                     'doc', 
                     'test',
-                    'bin',
+                    //'bin', // this removes the web/horde/bin folder and its scripts...
                     'script',
                     'scripts',
                     'static', // static should be ensured to exist in webdir.
