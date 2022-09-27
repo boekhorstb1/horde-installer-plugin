@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Horde\Composer;
 
 use Composer\Util\Filesystem;
-use DirectoryIterator;
 use ErrorException;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
+use Horde\Composer\RecursiveCopy;
 
 class JsTreeLinker
 {
@@ -122,7 +120,16 @@ class JsTreeLinker
             if ($this->mode === 'symlink') {
                 $this->filesystem->relativeSymlink($sourceFile, $targetFile);
             } else {
+<<<<<<< Updated upstream
                 copy($sourceFile, $targetFile);
+=======
+                if (is_file($sourceFile)) {
+                    (new RecursiveCopy($sourceFile, $targetFile))->copy();
+                }
+                if (is_dir($sourceFile)) {
+                    $this->linkDir($sourceFile, $targetFile);
+                }
+>>>>>>> Stashed changes
             }
         }
         closedir($sourceDirHandle);
