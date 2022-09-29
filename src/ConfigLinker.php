@@ -70,6 +70,9 @@ class ConfigLinker
                 if (file_exists($linkName)) {
                     continue;
                 }
+                if (is_link($linkName) && readlink($linkName)) {
+                    continue;
+                }
                 $this->mode == 'symlink' ? symlink($sourceName, $linkName) : copy($sourceName, $linkName);
             }
             // Do not overwrite existing files or links
